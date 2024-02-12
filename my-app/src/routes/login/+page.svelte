@@ -1,5 +1,4 @@
 <script>
-  import BaseContainer from "$lib/layout/BaseContainer.svelte";
 </script>
 
 <h1>login page</h1>

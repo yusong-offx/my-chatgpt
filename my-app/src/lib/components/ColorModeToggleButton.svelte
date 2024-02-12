@@ -1,12 +1,13 @@
 <script>
-    import "$lib/tailwind.css";
-    import { colorModetoggle, colorMode } from "$stores/ColorMode.js";
+    import { colorMode } from "$lib/stores/ColorMode.js";
 </script>
 
-<svelte:window />
-<svelte:document />
 <div>
-    <button on:click={colorModetoggle}>
+    <button
+        type="button"
+        on:click={colorMode.toggle}
+        class="bg-slate-600 text-slate-950 dark:bg-white dark:text-slate-950"
+    >
         Mode Change; Current mode is {$colorMode}
     </button>
 </div>

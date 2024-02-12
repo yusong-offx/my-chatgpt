@@ -1,37 +1,44 @@
 import { writable } from "svelte/store";
-import { browser } from "$app/environment";
 
-const isDarkMode = () => {
-    console.log("In init", browser);
+function createColorMode() {
     const windowLocalStorage = window.localStorage;
+    const documentElements = document.documentElement;
+
+    // Local Storage Color Mode
     const currentColorMode = windowLocalStorage.getItem("color-mode");
+
+    // If first time visit, get OS Color Mode
+    const osColorMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setColorMode = osColorMode ? "dark" : "light"
+
+    // Init Color Mode
+    let initColorMode;
+
     if (currentColorMode == null) {
-        const osColorMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        windowLocalStorage.setItem("color-mode", osColorMode ? "dark" : "light");
-        return osColorMode;
+        windowLocalStorage.setItem("color-mode", setColorMode);
+        initColorMode = setColorMode;
     } else {
-        return currentColorMode === "dark";
+        initColorMode = currentColorMode;
     }
-    // if (browser) {
-    // }
-    // return false;
-};
 
-export const colorMode = writable(false);
+    const { subscribe, set, update } = writable(initColorMode);
 
-export const colorModetoggle = () => {
-    colorMode.update((isDarkMode) => {
-        console.log("In toggle function", browser);
-        const windowLocalStorage = window.localStorage;
-        const documentElements = document.documentElement;
-        if (isDarkMode) {
-            documentElements.classList.remove("dark");
-            windowLocalStorage.setItem("color-mode", "light");
-        } else {
-            documentElements.classList.add("dark");
-            windowLocalStorage.setItem("color-mode", "dark");
-        }
-        return !isDarkMode;
-    });
-};
+    return {
+        subscribe,
+        toggle: () => update((prev) => {
+            const isDarkMode = prev === "dark";
 
+            if (isDarkMode) {
+                documentElements.classList.remove("dark");
+                windowLocalStorage.setItem("color-mode", "light");
+            } else {
+                documentElements.classList.add("dark");
+                windowLocalStorage.setItem("color-mode", "dark");
+            }
+
+            return isDarkMode ? "light" : "dark";
+        }),
+    }
+}
+
+export const colorMode = createColorMode();
