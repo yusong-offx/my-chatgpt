@@ -2,14 +2,24 @@
     import "$lib/tailwind.css";
 </script>
 
-<a href="/login">/login</a>
+<a
+    href="/login"
+    class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight"
+    >/login</a
+>
+<a
+    href="/chat"
+    class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight"
+    >/chat</a
+>
+
 <div class="grid grid-cols-5 gap-5">
-    <img src="https://picsum.photos/536/354" alt="tmpimage" />
-    <img src="https://picsum.photos/536/344" alt="tmpimage" />
-    <img src="https://picsum.photos/536/344" alt="tmpimage" />
-    <img src="https://picsum.photos/536/344" alt="tmpimage" />
-    <img src="https://picsum.photos/536/344" alt="tmpimage" />
-    <img src="https://picsum.photos/536/334" alt="tmpimage" />
+    <img src="https://picsum.photos/516/354" alt="tmpimage" />
+    <img src="https://picsum.photos/516/354" alt="tmpimage" />
+    <img src="https://picsum.photos/516/354" alt="tmpimage" />
+    <img src="https://picsum.photos/516/354" alt="tmpimage" />
+    <img src="https://picsum.photos/516/354" alt="tmpimage" />
+    <img src="https://picsum.photos/516/354" alt="tmpimage" />
 </div>
 <div
     class="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl"

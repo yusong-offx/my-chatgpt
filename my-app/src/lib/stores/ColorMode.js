@@ -21,23 +21,26 @@ function createColorMode() {
         initColorMode = currentColorMode;
     }
 
-    const { subscribe, set, update } = writable(initColorMode);
+    // Implement methods
+    const { subscribe, update } = writable(initColorMode);
+
+    const toggle = () => update((prev) => {
+        const isDarkMode = prev === "dark";
+
+        if (isDarkMode) {
+            documentElements.classList.remove("dark");
+            windowLocalStorage.setItem("color-mode", "light");
+        } else {
+            documentElements.classList.add("dark");
+            windowLocalStorage.setItem("color-mode", "dark");
+        }
+
+        return isDarkMode ? "light" : "dark";
+    })
 
     return {
         subscribe,
-        toggle: () => update((prev) => {
-            const isDarkMode = prev === "dark";
-
-            if (isDarkMode) {
-                documentElements.classList.remove("dark");
-                windowLocalStorage.setItem("color-mode", "light");
-            } else {
-                documentElements.classList.add("dark");
-                windowLocalStorage.setItem("color-mode", "dark");
-            }
-
-            return isDarkMode ? "light" : "dark";
-        }),
+        toggle: toggle,
     }
 }
 
