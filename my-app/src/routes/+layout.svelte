@@ -18,3 +18,24 @@
     <slot />
 </main>
 <Footer />
+
+<style>
+    :global(*) {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        transition: all 0.1ms;
+    }
+    :global(html) {
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        color: #000;
+        background-color: #fff;
+        width: 100vw;
+        height: 100vh;
+    }
+    main {
+        width: 100%;
+        height: 100%;
+    }
+</style>
