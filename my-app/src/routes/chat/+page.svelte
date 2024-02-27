@@ -1,6 +1,12 @@
 <script>
 </script>
 
-<h1>clone chatgpt</h1>
+<div class="chat_container">
+    <h1>hello world!</h1>
+</div>
 
-<styple></styple>
+<style>
+    .chat_container {
+        padding: 1rem;
+    }
+</style>

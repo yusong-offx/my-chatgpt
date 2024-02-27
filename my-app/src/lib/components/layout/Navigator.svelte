@@ -2,8 +2,18 @@
     import ColorModeToggleButton from "$lib/components/ColorModeToggleButton.svelte";
 </script>
 
-<h1>This is Navigator</h1>
-<ColorModeToggleButton />
+<nav>
+    <a href="/login">/login</a>
+    <a href="/chat">/chat</a>
+</nav>
 
 <style>
+    nav {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    a {
+        display: inline-block;
+    }
 </style>

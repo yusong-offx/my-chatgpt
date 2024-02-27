@@ -1,41 +1,25 @@
 <script>
-    import "$lib/tailwind.css";
     import Header from "$lib/components/layout/Header.svelte";
     import Footer from "$lib/components/layout/Footer.svelte";
-    import { colorMode } from "$lib/stores/ColorMode.js";
-    import { onMount } from "svelte";
-
-    onMount(() => {
-        $colorMode
-            ? document.documentElement.classList.add("dark")
-            : document.documentElement.classList.remove("dark");
-    });
+    import Navigator from "$lib/components/layout/Navigator.svelte";
 </script>
 
-<Header />
-<h1>This layout</h1>
-<main>
-    <slot />
-</main>
-<Footer />
+<div class="main_layout_container">
+    <div>
+        <Header />
+        <Navigator />
+    </div>
+
+    <main><slot /></main>
+
+    <Footer />
+</div>
 
 <style>
-    :global(*) {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        transition: all 0.1ms;
-    }
-    :global(html) {
-        font-size: 16px;
-        font-family: "Inter", sans-serif;
-        color: #000;
-        background-color: #fff;
-        width: 100vw;
+    .main_layout_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         height: 100vh;
-    }
-    main {
-        width: 100%;
-        height: 100%;
     }
 </style>
